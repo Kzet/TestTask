@@ -1,0 +1,35 @@
+<h1 id="tableLabel">Отправка сообщений</h1>
+
+<p *ngIf="!messages"><em>Loading...</em></p>
+
+<div class="mb-4">
+  <form method="POST">
+    <div class="mb-3">
+      <p *ngIf="errorField" class="p-3 bg-danger text-white">Не оставляйте поле пустым</p>
+      <label for="formControlTextarea" class="form-label">Поле ввода сообщения</label>
+      <textarea id="formControlTextarea" placeholder="Введите сообщение..." class="form-control" #message> </textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button (click)="encrypt(message.value); message.value=''" class="btn btn-primary">
+        Отправить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="table-wrapper">
+  <table class='table table-striped table-hover' *ngIf="messages">
+    <thead class="table-dark">
+      <tr>
+        <th class="th-td-width-50">Сообщение</th>
+        <th class="th-td-width-50">Время</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let message of messages">
+        <td class="th-td-width-50">{{ message.newMessage}}</td>
+        <td class="th-td-width-50">{{ message.receptTime}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
